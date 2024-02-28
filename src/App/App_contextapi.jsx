@@ -1,11 +1,14 @@
 import React from "react";
-import Theme from "./projects/theme/Theme";
+import MiniContext from "./projects/minicontext/MiniContext";
+
 
 const App = () => {
   return (
     <div className="container-fluid p-0">
+     
+
       {/* ===== Project-5 createContext, useContext, useState, context provider - START =====*/}
-      <Theme />
+  <MiniContext/>
       {/* ===== Project-5 - END =====*/}
     </div>
   );
