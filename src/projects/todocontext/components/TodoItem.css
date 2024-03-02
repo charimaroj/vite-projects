@@ -1,0 +1,7 @@
+
+.form-control:disabled{
+    border: none;
+    box-shadow: none;
+    user-select: none;
+    background: #fff;
+    }

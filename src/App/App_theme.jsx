@@ -1,50 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { ThemeContextProvider } from "./context/ThemeContextProvider";
-import "./Theme.css";
+import React from "react";
+import Theme from "./projects/theme/Theme";
 
-const Theme = () => {
-  const [themeMode, setThemeMode] = useState("light");
-  const lightMode = () => {
-    setThemeMode("light");
-  };
-
-  const darkMode = () => {
-    setThemeMode("dark");
-  };
-
-  //actual change theme
-  useEffect(() => {
-    if (themeMode == "light") {
-      document.querySelector("html").removeAttribute("data-theme", "light");
-    }
-    document.querySelector("html").setAttribute("data-theme", themeMode);
-  }, [themeMode]);
-
-  const themeHandler = () => {
-    if (themeMode == "light") {
-      darkMode();
-    } else {
-      lightMode();
-    }
-  };
-
+const App = () => {
   return (
-    <ThemeContextProvider value={{ themeMode, lightMode, darkMode }}>
-      <h1>Theme</h1>
-      <div className="form-check form-switch">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          role="switch"
-          id="flexSwitchCheckChecked"
-          onChange={themeHandler}
-        />
-        <label className="form-check-label" htmlFor="flexSwitchCheckChecked">
-          Checked switch checkbox input
-        </label>
-      </div>
-    </ThemeContextProvider>
+    <div className="container-fluid p-0">
+      {/* ===== Project-6 createContext, useContext, useState, context provider - START =====*/}
+      <Theme />
+      {/* ===== Project-6 - END =====*/}
+    </div>
   );
 };
 
-export default Theme;
+export default App;
