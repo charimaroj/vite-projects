@@ -1,12 +1,16 @@
 import React from "react";
-import TodoContextLocal from "./projects/todocontext/TodoContextLocal";
+import TodoReduxToolKit from "./projects/todoreduxtoolkit/TodoReduxToolKit";
+import { Provider } from "react-redux";
+import { store } from "./projects/todoreduxtoolkit/app/store";
 
 const App = () => {
   return (
     <div className="container-fluid p-0">
-      {/* ===== Project-7 createContext, useContext, useState, contextProvider, Localstorage - START =====*/}
-      <TodoContextLocal />
-      {/* ===== Project-7 - END =====*/}
+      {/* ===== Project-8 redux, redux-tool-kit, Localstorage - START =====*/}
+      <Provider store={store}>
+        <TodoReduxToolKit />
+      </Provider>
+      ,{/* ===== Project-8 - END =====*/}
     </div>
   );
 };
