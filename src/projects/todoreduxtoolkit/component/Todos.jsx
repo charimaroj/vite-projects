@@ -1,28 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { removeTodo } from "../reducers/todo/todoSlice";
+import { useSelector } from "react-redux";
+import Todo from "./Todo";
+
 import "./todos.css";
 
 const Todos = () => {
-  const [newTodo, setNewTodo] = useState("")
-  const [isTodoEditable, setIsTodoEditable] = useState(false);
-  const [isStriped, setIsStriped] = useState(false);
-  const todos = useSelector((state) => state.todos);
-  const dispatch = useDispatch();
 
-  const deleteHandler = (id) => {
-    dispatch(removeTodo(id));
-  };
-  const editHandler=()=>{
-    setIsTodoEditable(!isTodoEditable)
-  }
-  const updateHandler=(obj)=>{
-    dispatch(updateTodo({id:obj.id, text:newTodo}))
-    console.log(id, text)
-  }
-useEffect(()=>{
-  localStorage.setItem('todos', ...todos)
-}, [])
+
+  const todos = useSelector((state) => state.todos);
+
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+
+
 
   return (
     <div>
@@ -37,40 +30,10 @@ useEffect(()=>{
         <tbody>
           {todos.map((todo) => (
             <tr key={todo.id}>
-              <th scope="row">
-                <input type="checkbox" className="form-check-input" onChange={()=>setIsStriped(!isStriped)} />
-              </th>
-              <td className="w-80">
-                <input
-                  type="text"
-                  className={`form-control ${
-                    isStriped ? "text-decoration-line-through" : ""
-                  } `}
-                  value={todo.text}                  
-                  disabled={!isTodoEditable}
-                  onChange={(e)=>setNewTodo(e.target.value)}
-                />
-              </td>
-              <td className="w-20">
-                <div className="d-flex"></div>
-                {!isTodoEditable ? (
-                  <button type="button" className="btn btn-warning btn-sm mx-1" onClick={editHandler} disabled={isStriped}>
-                    Edit
-                  </button>
-                ) : (
-                  <button type="button" className="btn btn-primary btn-sm mx-1" onClick={()=>{updateHandler(todo.id, newTodo)}}>
-                    Save
-                  </button>
-                )}
-                <button
-                  type="button"
-                  className="btn btn-danger btn-sm mx-1"
-                  onClick={() => deleteHandler(todo.id)}
-                >
-                  Delete
-                </button>
-              </td>
+<Todo todo={todo} />
             </tr>
+            // <Todo todo={todo}/>
+          
           ))}
         </tbody>
       </table>
