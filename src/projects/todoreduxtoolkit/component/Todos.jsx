@@ -29,9 +29,11 @@ const Todos = () => {
         </thead>
         <tbody>
           {todos.map((todo) => (
-            <tr key={todo.id}>
-<Todo todo={todo} />
-            </tr>
+
+            <tr key={todo.id}><Todo todo={todo}/></tr>
+//             <tr key={todo.id}>
+// <Todo todo={todo} />
+//             </tr>
             // <Todo todo={todo}/>
           
           ))}

@@ -1,7 +1,9 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { act } from "react";
 
 const initialState = {
   todos: JSON.parse(localStorage.getItem("todos")),
+  //todos: [{ id: 1, todoText: "Hellow World" }],
 };
 
 export const todoSlice = createSlice({
@@ -23,11 +25,24 @@ export const todoSlice = createSlice({
         if (todo.id == action.payload) {
           return { ...todo, todoChecked: !todo.todoChecked };
         }
+        return todo;
+      });
+    },
+    updateTodo: (state, action) => {
+      state.todos = state.todos.map((todo) => {
+        if (todo.id === action.payload.id) {
+          return {
+            ...todo,
+            todoText: action.payload.todoText,
+          };
+        }
+        return todo;
       });
     },
   },
 });
 
-export const { addTodo, removeTodo, toggleTodo } = todoSlice.actions;
+export const { addTodo, removeTodo, toggleTodo, updateTodo } =
+  todoSlice.actions;
 
 export default todoSlice.reducer;

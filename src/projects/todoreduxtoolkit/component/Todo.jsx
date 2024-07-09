@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { removeTodo } from  "../features/todo/todoSlice";
+import { removeTodo, updateTodo } from "../features/todo/todoSlice";
 
 const Todo = ({ todo, setTodos }) => {
-  
   const [isStriped, setIsStriped] = useState(false);
   const dispatch = useDispatch();
   const [todoText, setTodoText] = useState(todo.todoText);
@@ -17,11 +16,11 @@ const Todo = ({ todo, setTodos }) => {
   };
   const updateHandler = (obj) => {
     setIsTodoEditable(!isTodoEditable);
-    dispatch(updateTodo({ id: obj.id, text: todoText }));
+    dispatch(updateTodo({ id: obj.id, todoText: todoText }));
   };
 
-  return <>
-
+  return (
+    <>
       <th scope="row">
         <input
           type="checkbox"
@@ -56,7 +55,7 @@ const Todo = ({ todo, setTodos }) => {
             type="button"
             className="btn btn-primary btn-sm mx-1"
             onClick={() => {
-              updateHandler(todo.id, todoText);
+              updateHandler({ id: todo.id, todoText });
             }}
           >
             Save
@@ -70,8 +69,8 @@ const Todo = ({ todo, setTodos }) => {
           Delete
         </button>
       </td>
-
-  </>;
+    </>
+  );
 };
 
 export default Todo;
